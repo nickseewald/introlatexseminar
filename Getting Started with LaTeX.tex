@@ -112,6 +112,21 @@
 	
 	There are a few key components included in the code to include Figure~\ref{fig: ryan gosling}. First is the \verb|[h]| option. \texttt{h} stands for \texttt{here}, which tells \LaTeX to put the figure approximately where the code is on the page. It won't always do that, though, because \LaTeX can (and will!) make decisions about where to put stuff to make things as pretty as it can. You can override this by using the \texttt{float} package, and specifying the \verb|[H]| option (which I think means \texttt{HERE!}).
 	
+	\section{Making Presentations in \LaTeX with \texttt{beamer}}
+	\begin{itemize}
+		\item The most commonly-used way to make a presentation in \LaTeX is to use a \texttt{documentclass} called \texttt{beamer}. The first line of your document should be
+		\begin{verbatim}
+		\documentclass{beamer}
+		\end{verbatim}
+		\item In the preamble, specify theme, title, author, etc. You can choose both a \texttt{theme} and a \texttt{colortheme}. Think of \texttt{theme} as a layout, and \texttt{colortheme} as a color palette. See \url{http://www.hartwork.org/beamer-theme-matrix/} for a grid of what every default \texttt{theme} and \texttt{colortheme} look like together.
+		\item Slides are called \texttt{frame}s, and are environments (like itemize, etc. -- open with \texttt{begin} and close with \texttt{end}.) Inside a frame, you can do most anything you can do in normal \LaTeX.
+		\item More in-depth tutorials:
+		\begin{itemize}
+			\item \url{http://www.math-linux.com/latex-26/article/how-to-make-a-presentation-with-latex-introduction-to-beamer}
+			\item \url{https://en.wikibooks.org/wiki/LaTeX/Presentations}
+		\end{itemize}
+	\end{itemize}
+	
 	\begin{thebibliography}{99}
 		\bibitem{wikibooks} ``LaTeX." Wikibooks, The Free Textbook Project. 23 Jan 2015, 02:30 UTC. 5 Nov 2015, 23:10 \url{https://en.wikibooks.org/w/index.php?title=LaTeX&oldid=2757849}.
 	\end{thebibliography}

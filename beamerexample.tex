@@ -1,0 +1,67 @@
+\documentclass{beamer}
+\usepackage{amsthm, multirow, hhline}
+\usetheme{Ilmenau}
+\usecolortheme{default}
+
+\title[An Alternate Title]{My First Beamer!}
+\author{Nick Seewald}
+\institute{University of Michigan}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	\section{My first section!}
+	\begin{frame}{My first slide!}	
+		\begin{itemize}
+			\item Here's a bullet point.
+			\item Here's another one.
+			\pause
+			\item Here's the Neyman-Pearson Lemma. Isn't this fun?
+		\end{itemize}
+			\begin{theorem}[Neyman-Pearson Lemma]
+				Given any level $\alpha\in [0,1]$, there exists a likelihood ratio test $\varphi_{\alpha}$ with level $\alpha$, and any likelihood ratio test with level $\alpha$ maximizes $E_{1}\varphi$ among tests with level at most $\alpha$. 
+			\end{theorem}
+	\end{frame}
+	
+	\begin{frame}{Columns and Figures}
+		\begin{columns}
+			\begin{column}{.5\textwidth}
+				To create columns, we use the \texttt{columns} environment, with \texttt{column} environments nested inside.
+			\end{column}
+			\begin{column}{.5\textwidth}
+				Including figures is just the same as in an \texttt{article}.
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{A detailed table}
+		\begin{table}[H]
+			\caption{Spearman correlation ($P$-value) between continuous clinicopathologic factors and QOL measures}
+			\centering
+			\label{table:aim2 spearman}
+			\resizebox{.9\textheight}{!}{
+			\begin{tabular}{cr|ccc}
+				& \textbf{QOL Measure} & \textbf{Age, years} & \textbf{BMI} & \textbf{Time on AI 1} \\ \hhline{~----}
+				\multirow{5}{*}{\textbf{Month 1}} & $\Delta$ EuroQOL & 0.25 (0.04) & 0.01 (0.93) & 0.20 (0.10) \\
+				& $\Delta$ HAQ & 0.09 (0.43) & -0.04 (0.77) & -0.19 (0.11) \\
+				& $\Delta$ VAS & -0.06 (0.59) & 0.23 (0.05) & -0.30 (0.01) \\
+				& $\Delta$ CES-D & 0.09 (0.46) & 0.04 (0.77) & 0.07 (0.55) \\
+				& $\Delta$ HADS-A & -0.01 (0.96) & -0.12 (0.35) & 0.17 (0.18) \\ \hhline{~----}
+				\multirow{5}{*}{\textbf{Month 3}} & $\Delta$ EuroQOL & 0.20 (0.13) & -0.13 (0.31) & 0.13 (0.30) \\
+				& $\Delta$ HAQ & -0.06 (0.63) & -0.02 (0.90) & -0.23 (0.08) \\
+				& $\Delta$ VAS & -0.45 ($<$0.001*) & 0.22 (0.09) & -0.42 (0.001*) \\
+				& $\Delta$ CES-D & -0.05 (0.69) & 0.16 (0.21) & -0.12 (0.36) \\
+				& $\Delta$ HADS-A & 0.09 (0.52) & 0.13 (0.34) & 0.02 (0.90) \\ \hhline{~----}
+				\multirow{5}{*}{\textbf{Month 6}} & $\Delta$ EuroQOL & 0.03 (0.82) & -0.15 (0.30) & 0.08 (0.59) \\
+				& $\Delta$ HAQ & -0.09 (0.57) & 0.08 (0.63) & -0.10 (0.52) \\
+				& $\Delta$ VAS & -0.30 (0.06) & 0.36 (0.02) & -0.33 (0.03) \\
+				& $\Delta$ CES-D & 0.30 (0.04) & $\sim$0.00 (0.98) & 0.11 (0.47) \\
+				& $\Delta$ HADS-A & 0.07 (0.68) & 0.11 (0.50) & -0.08 (0.62)
+			\end{tabular}
+			}
+		\end{table}
+	\end{frame}
+	
+\end{document}
