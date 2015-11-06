@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage{enumerate, amsmath ,amsfonts}
+\usepackage[margin=1in]{geometry} %change page margins
+\usepackage[english]{SASnRdisplay} %codeblocks in SAS and R. English option gives English captions (otherwise they'll be in Danish)
+\usepackage{hyperref} %embed hyperlinks in the pdf
+\usepackage{times}
+
+\title{\LaTeX \ 101/201 \\
+	\Large{Biostatistics Brown Bag Seminar}}
+\author{Anagha Tolpadi and Nick Seewald \\ \small{University of Michigan Department of Biostatistics}}
+\date{4 December 2014}
+
+\begin{document}
+	\maketitle
+	
+	$a,b\in \mathbb{R}$
+	
+	This handout and example files are available online at \href{http://bit.ly/brownbaglatex201}{http://bit.ly/brownbaglatex201}.
+	
+	\section{Introductory \LaTeX}
+	To do most things in \LaTeX, you need to install packages. You do that in the preamble.
+	
+	This is an exciting new paragraph.
+	
+	To put things in math mode, surround your equations with \$'s. For example, $\sqrt{4}=2$.
+	
+	To write out equation's, you can use  equation. equation* will remove the numbers after each line.
+	
+	\begin{equation}
+	\sqrt{4} = 2
+	\end{equation}
+	
+	\begin{equation*}
+	\sqrt{4} = 2
+	\end{equation*}
+	
+	If you need to solve through (which will probably be most useful for homework assignments), you can use align.
+	
+	\begin{align*}
+	\sqrt{2+2} &= \sqrt{4} \\
+	&= 2
+	\end{align*}
+	
+	Both align and equation will automatically use math mode, so you do not need to use the \$'s.
+	\\
+	To make lists, you can use an itemize or enumerate environment.
+	\begin{enumerate}
+		\item
+		\begin{itemize}
+			\item
+			\item
+			\end{itemize}
+			\item
+	\end{enumerate}
+			
+			This is a table.
+			\begin{center}
+				\begin{tabular}{c|c|}
+					\hline
+					a & b \\
+					\hline
+					c & d \\
+					\hline
+				\end{tabular}
+			\end{center}
+	
+	\section{R Output: Using \texttt{xtable}}
+	\begin{itemize}
+		\item \texttt{xtable} is an R package for converting R tables to \LaTeX tables.
+		\item To install and load, 
+		\begin{Rcode*}
+> install.packages(``xtable'')
+> library(xtable)
+		\end{Rcode*}
+		\item Use the \texttt{xtable} function on the table you want to export, then copy and paste the output into your .tex file.
+	\end{itemize}
+	
+	
+	\section{SAS Output: Using \texttt{ODS LATEX}}
+	\begin{itemize}
+		\item ODS (\textbf{O}utput \textbf{D}elivery \textbf{S}ystem) lets you create nice-looking output files containing results from SAS. Examples include HTML (the default), PDF, RTF, etc. ODS also controls graphics output, but, for our purposes, we won't worry about this.
+		\item To use ODS, surround your SAS code in \texttt{ODS (TYPE) (...);} and \texttt{ODS (TYPE) CLOSE;}. This does \textit{not} work all the time, but it's generally how things look.
+		\item \texttt{ODS LATEX} works like any other ODS method, with some unique syntax.
+		\begin{itemize}
+			\item Open \texttt{ODS LATEX} with
+			\begin{quote}
+				\texttt{ODS LATEX FILE= ``<\textit{filename}>.tex'' STYLESHEET=``sas.sty''(url=``sas'');} 
+			\end{quote}
+			\item Close \texttt{ODS LATEX} with 
+			\begin{quote}
+				\texttt{ODS LATEX CLOSE;}
+			\end{quote}
+			\item A full example:
+			\begin{SAScode*}
+ODS LATEX FILE="fishmeans.tex" STYLESHEET="sas.sty"(URL="sas");
+PROC MEANS DATA=sashelp.fish;
+	VAR weight length1 length2 length3;
+RUN;
+ODS LATEX CLOSE;
+			\end{SAScode*}
+		\end{itemize}
+		\item Files (.tex, .sty) will be placed in your current working directory.
+	\end{itemize}
+	
+	\subsection{``Installing'' the SAS Stylesheet, \texttt{sas.sty}}
+	\begin{itemize}
+		\item Packages in \LaTeX are defined by files called \textit{stylsheets}, which have extension .sty
+		\item In \texttt{ODS LATEX} syntax, we call the stylesheet ``sas.sty''. 
+		\item Unfortunately, we have to manually install this package, which involves creating some folders on your hard drive.
+		\item \textbf{NOTE:} The default \texttt{sas.sty} file forces a lot of changes in document appearance that I dislike. I've modified the default output to allow more flexibility, and to make your \LaTeX look more like \LaTeX. You can find that file at \href{http://bit.ly/brownbaglatex201}{http://bit.ly/brownbaglatex201}.
+		\item Instructions for Windows:
+		\begin{itemize}
+			\item  Move \texttt{sas.sty} to \texttt{C:$\backslash$Local TeX Files$\backslash$tex$\backslash$latex$\backslash$misc$\backslash$}. You'll need to make these folders.
+			\item Open MikTeX settings. On the ``Roots'' tab, click ``Add...'', then point to the Local TeX Files folder and click Ok. On the ``General'' tab, click ``Update Formats''.
+		\end{itemize}
+		\item Instructions for Mac:
+		\begin{itemize}
+			\item On a Mac, local additions go into the Library/texmf folder of your Home folder.
+			\item (~/Library/texmf) You never need to update the file database for local additions to this folder. If the folder doesn't exist, you will need to create it yourself. For a one-click version of this you can use this utility: \href{https://www.msu.edu/~amunn/latex/make-local-texmf.zip}{https://www.msu.edu/$\sim$amunn/latex/make-local-texmf.zip}
+			\item If you are running OS 10.7 (Lion) or later, your user Library is unfortunately a hidden folder. It is, however, easy to access it through the Finder's Go menu: hold down the Option key while choosing the Go menu, and the local Library folder will appear in the list. Alternatively if you type Command-Shift-G you can enter the folder path directly (~/Library/texmf)
+			\item (This was copied verbatim from StackExchange: \href{http://tex.stackexchange.com/a/10256}{http://tex.stackexchange.com/a/10256}) (Disclaimer: I do not use OS X, so no guarantees that this works.)
+			\item Essentially, put \texttt{sas.sty} in /Library/texmf. 
+		\end{itemize}
+		\item Instructions for Linux:
+		\begin{itemize}
+			\item You're using Linux, so you're obviously smart enough to figure this out on your own. Sorry!
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{Including SAS Output in Your .tex File}
+	\begin{itemize}
+		\item Include the \texttt{sas} package in your document's preamble, i.e.,
+		\begin{verbatim}
+\documentclass{article}
+\usepackage{sas}
+\begin{document}
+		\end{verbatim}
+		\item Open your output .tex file (saved in the SAS working directory)
+		\item Copy and paste the corresponding \texttt{sastable}s!
+	\end{itemize}
+	
+	\section{Making Presentations in \LaTeX with \texttt{beamer}}
+	\begin{itemize}
+		\item The most commonly-used way to make a presentation in \LaTeX is to use a \texttt{documentclass} called \texttt{beamer}. The first line of your document should be
+		\begin{verbatim}
+\documentclass{beamer}
+		\end{verbatim}
+		\item In the preamble, specify theme, title, author, etc. You can choose both a \texttt{theme} and a \texttt{colortheme}. Think of \texttt{theme} as a layout, and \texttt{colortheme} as a color palette. See \href{http://www.hartwork.org/beamer-theme-matrix/}{http://www.hartwork.org/beamer-theme-matrix/} for a grid of what every default \texttt{theme} and \texttt{colortheme} look like together.
+		\item Slides are called \texttt{frame}s, and are environments (like itemize, etc. -- open with \texttt{begin} and close with \texttt{end}.) Inside a frame, you can do most anything you can do in normal \LaTeX.
+		\item More in-depth tutorials:
+		\begin{itemize}
+			\item \href{http://www.math-linux.com/latex-26/article/how-to-make-a-presentation-with-latex-introduction-to-beamer}{http://www.math-linux.com/latex-26/article/how-to-make-a-presentation-with-latex-introduction-to-beamer}
+			\item \href{https://en.wikibooks.org/wiki/LaTeX/Presentations}{https://en.wikibooks.org/wiki/LaTeX/Presentations}
+		\end{itemize}
+	\end{itemize}
+	
+\begin{thebibliography}{99}
+\bibitem{ross}
+S. Ross, \textit{A First Course in Probability}, Pearson Prentice Hall, Upper Saddle River, 2010.
+\bibitem{mceliece}
+R. J. McEliece, \textit{Theory of Information and Coding}, Cambridge University Press, Port Chester, 2001.
+\bibitem{jukna}
+S. Jukna, \textit{Extremal Combinatorics with Applications in Computer Science}, Springer, New York, 2001.
+\bibitem{alon and spencer}
+N. Alon \& J. H. Spencer, \textit{The Probabilistic Method}, John Wiley \& Sons, Hoboken, 2008.
+\bibitem{radhakrishnan}
+J. Radhakrishnan, Entropy and Counting, \textit{IIT Kharagpur, Golden Jubilee Volume, on Computational Mathematics, Modelling and Algorithms}, Ed. J.C. Mishra, Narosa Publishers, New Dehli, 2001.
+\bibitem{alon and friedland}
+N. Alon \& S. Friedland, The maximum number of perfect matchings in graphs with a given degree sequence, \emph{Electron. J. Combin.} \bf{15} (2008)
+\end{thebibliography}
+
+	
+\end{document}
