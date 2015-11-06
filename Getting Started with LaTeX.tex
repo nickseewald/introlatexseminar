@@ -112,6 +112,11 @@
 	
 	There are a few key components included in the code to include Figure~\ref{fig: ryan gosling}. First is the \verb|[h]| option. \texttt{h} stands for \texttt{here}, which tells \LaTeX to put the figure approximately where the code is on the page. It won't always do that, though, because \LaTeX can (and will!) make decisions about where to put stuff to make things as pretty as it can. You can override this by using the \texttt{float} package, and specifying the \verb|[H]| option (which I think means \texttt{HERE!}).
 	
+	\section{Compiling}
+	If you're using a dedicated TeX editor (like TeXstudio), it's probably got a compile button front-and-center (or mapped to a keyboard shortcut). 
+	
+	Otherwise, you'll need to compile through the command line. Typically, this is done by navigating to the location of the \texttt{.tex} file and run \texttt{pdflatex <filename>}.
+	
 	\section{Making Presentations in \LaTeX with \texttt{beamer}}
 	\begin{itemize}
 		\item The most commonly-used way to make a presentation in \LaTeX is to use a \texttt{documentclass} called \texttt{beamer}. The first line of your document should be
