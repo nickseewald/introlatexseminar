@@ -4,10 +4,10 @@
 
 % % PREAMBLE: Define parameters for your document to use that don't get printed in the document. Here's where you include packages, style parameters, write your title, etc.
 
-\title{Getting Started with \LaTeX: \\ 
+\title{Getting Started with \LaTeX: \\
 	\large{A Biostatistics Brown Bag Seminar}}
 \author{Nick Seewald}
-\date{6 November 2015}
+\date{\today}
 
 \usepackage{amsmath, amsfonts, amssymb, graphicx, float, lipsum, hyperref}
 \usepackage[margin=1in]{geometry}
@@ -58,12 +58,13 @@
 	
 	\begin{table}[H]
 		\centering
-		\begin{tabular}{c|c}
+		\caption{hi!}
+		\begin{tabular}{l|r}
 			\textbf{\LaTeX Command} & \textbf{Result} \\ \hline
 			\verb|\textit{Make text Italic}| & \textit{Make text Italic} \\
 			\verb|\section{}| & Make a new section \\
 			\verb|$\sqrt{4} = 2$| & $\sqrt{4} = 2$ \\ 
-			\verb|$\bar{X}| & $\bar{X}$
+			\verb|$\bar{X}| & $\bar{X}^{2}_{1}$
 		\end{tabular}
 	\end{table}
 	
@@ -88,6 +89,10 @@
 	\end{quote}
 	
 	Notice that \verb|\alpha| and \verb|\beta| must be called in math mode. We can create ``displayed'' math (that appears on its own line) by surrounding the math with brackets: \verb|\[ \]|. We don't need to include \$'s here; the brackets indicate math mode for us. 
+	
+	\[
+		P(\text{full house}) = \frac{1}{2}
+	\]
 	
 	If you get stuck and don't know the command to produce a particular symbol, try using DeTeXify: \url{detexify.kirelabs.org}.
 	
@@ -137,3 +142,13 @@
 	\end{thebibliography}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
